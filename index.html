@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoNetCountryAI</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+    <script src="brain.js"></script>
+    <script src="code.js"></script>
+<body>
+
+    <div class="user-welcome" id="userwelcome">
+        <h1>GeoNetCountryAI</h1>
+        <div class="loading-container">
+            <div class="loading"></div>
+        </div>
+    </div>
+
+    <div class="ocult" id="redcontent">
+        <div class="redcontent_interface">
+            <div class="content-red">
+                <h2>Neural Network</h2>
+                <div class="neural-network">
+                    <input type="number" placeholder="Enter the HDI" id="input-idh">
+                    <input type="number" placeholder="Enter Inflation" id="input-inf">
+                    <input type="number" placeholder="Enter Corruption Index" id="input-idc">
+                    <input type="number" placeholder="Enter Life Expectancy" id="input-edv">
+                    <input type="number" placeholder="Enter Sustainability Index" id="input-ids">
+                    <input type="button" value="Classify" class="button" onclick="startai();">
+                </div>
+            </div>
+            <div class="content-red">
+                <h2>ADS</h2>
+            </div>
+        </div>
+
+        <div class="redcontent_interface">
+            <div class="content-red">
+                <h2>Console</h2>
+                <div class="console">
+                    <p class="fip">Welcome to GeoNetCountryAI. You can classify the level of development of a country using the neural network section.</p>
+                </div>
+            </div>
+            <div class="content-red">
+                <h2 class="" id="filesbar">Files</h2>
+                <div class="ocult" id="testdatabar">
+                    <h2>test-data.txt</h2>
+                    <b onclick="ocult1();">X</b>
+                </div>
+                <div class="ocult" id="classifybar">
+                    <h2>how-to-classify.txt</h2>
+                    <b onclick="ocult2();">X</b>
+                </div>
+                <div class="files" id="files">
+                    <p class="filelist" onclick="show1();">test-data.txt</p><br>
+                    <p class="filelist" onclick="show2();">how-to-classify.txt</p>
+                </div>
+                <div class="ocult" id="firstfile">
+                    <p>This file contains test data of several countries for testing with the neural network.</p>
+                    <br>
+                    <p>Canada: HDI: 0.938, Inflation: 1.9%, Corruption index: 89, Life expectancy: 82 years, Sustainability index: 67.2
+                        <br><br> 
+                        United States: HDI: 0.920, Inflation: 1.8%, Corruption index: 71, Life expectancy: 78 years, Sustainability index: 65.7
+                        <br><br>
+                        Mexico: HDI: 0.813, Inflation: 4.1%, Corruption index: 32, Life expectancy: 76 years, Sustainability index: 45.2
+                        <br><br>
+                        Dominican Republic: HDI: 0.765, Inflation: 3.2%, Corruption index: 34, Life expectancy: 74 years, Sustainability index: 39.2
+                        <br><br>
+                        Colombia: HDI: 0.771, Inflation: 3.5%, Corruption index: 35, Life expectancy: 74 years, Sustainability index: 40.5
+                        <br><br>
+                        Brazil: HDI: 0.758, Inflation: 4.3%, Corruption index: 40, Life expectancy: 75 years, Sustainability index: 42.8
+                        <br><br>
+                        Bolivia: HDI: 0.669, Inflation: 4.0%, Corruption index: 30, Life expectancy: 71 years, Sustainability index: 34.1
+                        <br><br>
+                        Chile: HDI: 0.857, Inflation: 2.2%, Corruption index: 68, Life expectancy: 82 years, Sustainability index: 57.3
+                        <br><br>
+                        Argentina: HDI: 0.818, Inflation: 57.9%, Corruption index: 43, Life expectancy: 76 years, Sustainability index: 46.7
+                        <br><br>
+                        Uruguay: HDI: 0.828, Inflation: 5.4%, Corruption index: 77, Life expectancy: 77 years, Sustainability index: 48.9
+                        <br><br>
+                        Spain: HDI: 0.890, Inflation: 0.9%, Corruption index: 59, Life expectancy: 83 years, Sustainability index: 60.4
+                        <br><br>
+                        France: HDI: 0.908, Inflation: 0.9%, Corruption index: 69, Life expectancy: 83 years, Sustainability index: 63.1
+                        <br><br>
+                        United Kingdom: HDI: 0.944, Inflation: 0.6%, Corruption index: 78, Life expectancy: 81 years, Sustainability index: 68.4
+                        <br><br>
+                        Poland: HDI: 0.859, Inflation: 3.2%, Corruption index: 49, Life expectancy: 76 years, Sustainability index: 47.9
+                        <br><br>
+                        Norway: HDI: 0.954, Inflation: 2.0%, Corruption index: 88, Life expectancy: 83 years, Sustainability index: 72.8
+                        <br><br>
+                        Egypt: HDI: 0.696, Inflation: 10.5%, Corruption index: 33, Life expectancy: 72 years, Sustainability index: 35.9
+                        <br><br>
+                        Democratic Republic of the Congo: HDI: 0.507, Inflation: 9.5%, Corruption index: 22, Life expectancy: 63 years, Sustainability index: 22.9
+                        <br><br>
+                        Angola: HDI: 0.523, Inflation: 17.0%, Corruption index: 20, Life expectancy: 61 years, Sustainability index: 24.1
+                        <br><br>
+                        Madagascar: HDI: 0.527, Inflation: 4.8%, Corruption index: 26, Life expectancy: 66 years, Sustainability index: 26.1
+                        <br><br>
+                        South Africa: HDI: 0.716, Inflation: 4.4%, Corruption index: 42, Life expectancy: 64 years, Sustainability index: 38.6
+                        <br><br>
+                        Russia: HDI: 0.820, Inflation: 4.7%, Corruption index: 29, Life expectancy: 72 years, Sustainability index: 45.8
+                        <br><br>
+                        China: HDI: 0.758, Inflation: 1.7%, Corruption index: 36, Life expectancy: 76 years, Sustainability index: 42.8
+                        <br><br>
+                        South Korea: HDI: 0.917, Inflation: 1.2%, Corruption index: 56, Life expectancy: 83 years, Sustainability index: 64.0
+                        <br><br>
+                        Japan: HDI: 0.919, Inflation: -0.1%, Corruption index: 75, Life expectancy: 84 years, Sustainability index: 64.6
+                        <br><br>
+                        Thailand: HDI: 0.735, Inflation: 0.9%, Corruption index: 35, Life expectancy: 74 years, Sustainability index: 39.2
+                        <br><br>
+                        Australia: HDI: 0.939, Inflation: 1.6%, Corruption index: 77, Life expectancy: 83 years, Sustainability index: 67.3
+                        <br><br>
+                        New Zealand: HDI: 0.925, Inflation: 1.5%, Corruption index: 89, Life expectancy: 82 years, Sustainability index: 65.6
+                        <br><br>
+                        <a href="https://chat.openai.com/" target="_blank">Source</a>
+                    </p>
+                </div>
+                <div class="ocult" id="secondfile">
+                    <p>To use the neural network, you need to input the data for each of these five features into their respective fields. Then, you can press the "Classify" button to run the network. The result of the classification will appear in the console indicating whether the country is developed, developing, or underdeveloped.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
